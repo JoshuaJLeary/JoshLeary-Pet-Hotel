@@ -9,7 +9,7 @@ petApp.config(function($routeProvider) {
         controller: 'PetController as vm'
     })
     .when('/owner', {
-        templateUrl: '/views/owner.htm',
+        templateUrl: '/views/owner.html',
         controller:'OwnerController as vm'
     })
     .otherwise( {
