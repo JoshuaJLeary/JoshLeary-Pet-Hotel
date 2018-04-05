@@ -10,9 +10,9 @@ petApp.config(function($routeProvider) {
     })
     .when('/owner', {
         templateUrl: '/views/owner.html',
-        controller:'OwnerController as vm'
+        controller: 'OwnerController as vm'
     })
     .otherwise( {
-        redirectTo: '/pet'
+        redirectTo: '/owner'
     })
 });

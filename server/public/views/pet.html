@@ -1,3 +1,14 @@
 <div>
     Pets View!
 </div>
+<form ng-submit="vm.addPet(vm.petToAdd)">
+    <select ng-model="vm.petToAdd.owner_id">
+        <option value="">-- Select Owner --</option>
+    <!-- <option ng-repeat="ship in vm.ships.list" value="{{ship.id}}">{{ship.name}}</option> -->
+     <option ng-repeat="petOwner in vm.owners.list" value="{{petOwner.id}}">{{petOwner.name}}</option>
+    </select><br>
+    <input type="text" placeholder="Name" ng-model="vm.petToAdd.name"><br>
+    <input type="text" placeholder="Type" ng-model="vm.petToAdd.type"><br>
+    <input type="text" placeholder="Breed" ng-model="vm.petToAdd.breed"><br>
+    <input type="submit">
+</form>

@@ -1,3 +1,8 @@
 <div>
     Owners View!
 </div>
+<form ng-submit="vm.addOwner(vm.ownerToAdd)">
+    <input type="text" placeholder="Name" ng-model="vm.ownerToAdd.name"><br>
+    <input type="number" placeholder="Total Pets" ng-model="vm.ownerToAdd.pets_owned"><br>
+    <input type="submit">
+</form>
