@@ -18,13 +18,27 @@ router.post('/', function (req, res) {
 
 router.get('/', function(req, res) {
     console.log('GET /owner');
-    let queryText = `SELECT * FROM "owners"`;
+    let queryText = `SELECT "owners"."id", "owners"."owner_name", COUNT("pets"."owner_id") FROM "pets" RIGHT JOIN "owners"  ON "pets"."owner_id" = "owners"."id" 
+    GROUP BY "owners"."id", "owners"."owner_name"`;
     pool.query(queryText).then(function(result) {
         res.send(result.rows);
     }).catch(function(error) {
         console.log('Error GET /owner', error);
         res.sendStatus(500);
     });
+});
+
+router.delete('/:id', (req, res) => {
+    console.log('DELETE /owner', req.params);
+    const ownerId = req.params.id;
+    pool.query('DELETE FROM "owners" WHERE "id" = $1;', [ownerId])
+        .then((result) => {
+            res.sendStatus(200);
+        })
+        .catch((error) => {
+            console.log('error making owner delete query', error);
+            res.sendStatus(500);
+        });
 });
 
 module.exports = router;

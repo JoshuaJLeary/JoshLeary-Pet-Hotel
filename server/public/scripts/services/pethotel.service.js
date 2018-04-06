@@ -58,6 +58,35 @@ petApp.service('PetHotelService', ['$http', function($http) {
             console.log('PetController/getPet/error', error);
         });
     }
+
+    self.deletePet = function(petId) {
+        console.log(petId);
+        $http({
+            method: 'DELETE',
+            url: `/pet/${petId}`
+        }).then((response) => {
+            self.getPet();
+            alert('Success!');
+        }).catch((error) => {
+            console.log('error making rent get request', error);
+            alert('Something went wrong! Check the server.');
+        });
+    }
+
+    self.deleteOwner = function(ownerId) {
+        console.log(ownerId);
+        $http({
+            method: 'DELETE',
+            url: `/owner/${ownerId}`
+        }).then((response) => {
+            self.getPet();
+            self.getOwner();
+            alert('Success!');
+        }).catch((error) => {
+            console.log('error making get request', error);
+            alert('Something went wrong! Check the server.');
+        });
+    }
     self.getPet();
     self.getOwner();
 

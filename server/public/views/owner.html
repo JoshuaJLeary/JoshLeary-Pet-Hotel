@@ -3,7 +3,6 @@
 </div>
 <form ng-submit="vm.addOwner(vm.ownerToAdd)">
     <input type="text" placeholder="Name" ng-model="vm.ownerToAdd.owner_name"><br>
-    <input type="number" placeholder="Total Pets" ng-model="vm.ownerToAdd.pets_owned"><br>
     <input type="submit">
 </form>
 
@@ -15,7 +14,7 @@
         </thead>
         <tbody>
             <tr ng-repeat="owner in vm.owners.list">
-                <td>{{owner.owner_name}}</td><td>{{owner.pets_owned}}</td>
+                <td>{{owner.owner_name}}</td><td>{{owner.count}}</td><td><button ng-click="vm.deleteOwner(owner)">Delete!</button></td>
             </tr>
         </tbody>
     </table>

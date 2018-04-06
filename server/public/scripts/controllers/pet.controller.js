@@ -11,4 +11,5 @@ petApp.controller('PetController', ['PetHotelService', function(PetHotelService)
 
     self.addPet = PetHotelService.addPet;
     
+    self.deletePet = PetHotelService.deletePet;
 }]);

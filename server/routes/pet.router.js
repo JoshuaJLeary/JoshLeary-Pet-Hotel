@@ -17,13 +17,26 @@ router.post('/', function (req, res) {
 
 router.get('/', function(req, res) {
     console.log('GET /pet');
-    let queryText = `SELECT "name", "type", "breed", "owner_id" FROM "pets" JOIN "owners" ON "pets"."owner_id" = "owners"."id";`;
+    let queryText = `SELECT "name", "type", "breed", "owner_id", "pets"."id" FROM "pets" JOIN "owners" ON "pets"."owner_id" = "owners"."id";`;
     pool.query(queryText).then(function(result) {
         res.send(result.rows);
     }).catch(function(error) {
         console.log('Error GET /pet', error);
         res.sendStatus(500);
     });
+});
+
+router.delete('/:id', (req, res) => {
+    console.log('DELETE /pet', req.params);
+    const petId = req.params.id;
+    pool.query('DELETE FROM "pets" WHERE "id" = $1;', [petId])
+        .then((result) => {
+            res.sendStatus(200);
+        })
+        .catch((error) => {
+            console.log('error making pet delete query', error);
+            res.sendStatus(500);
+        });
 });
 
 module.exports = router;
