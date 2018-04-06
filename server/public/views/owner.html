@@ -2,7 +2,20 @@
     Owners View!
 </div>
 <form ng-submit="vm.addOwner(vm.ownerToAdd)">
-    <input type="text" placeholder="Name" ng-model="vm.ownerToAdd.name"><br>
+    <input type="text" placeholder="Name" ng-model="vm.ownerToAdd.owner_name"><br>
     <input type="number" placeholder="Total Pets" ng-model="vm.ownerToAdd.pets_owned"><br>
     <input type="submit">
 </form>
+
+<table>
+        <thead>
+            <tr>
+                <th>Name</th><th>Pets Owned</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="owner in vm.owners.list">
+                <td>{{owner.owner_name}}</td><td>{{owner.pets_owned}}</td>
+            </tr>
+        </tbody>
+    </table>

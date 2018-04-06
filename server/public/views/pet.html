@@ -5,10 +5,23 @@
     <select ng-model="vm.petToAdd.owner_id">
         <option value="">-- Select Owner --</option>
     <!-- <option ng-repeat="ship in vm.ships.list" value="{{ship.id}}">{{ship.name}}</option> -->
-     <option ng-repeat="petOwner in vm.owners.list" value="{{petOwner.id}}">{{petOwner.name}}</option>
+     <option ng-repeat="petOwner in vm.owners.list" value="{{petOwner.id}}">{{petOwner.owner_name}}</option>
     </select><br>
     <input type="text" placeholder="Name" ng-model="vm.petToAdd.name"><br>
     <input type="text" placeholder="Type" ng-model="vm.petToAdd.type"><br>
     <input type="text" placeholder="Breed" ng-model="vm.petToAdd.breed"><br>
     <input type="submit">
 </form>
+
+<table>
+    <thead>
+        <tr>
+            <th>Owner</th><th>Name</th><th>Type</th><th>Breed</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="pet in vm.pets.list">
+            <td>{{pet.owner_id}}</td><td>{{pet.name}}</td><td>{{pet.type}}</td><td>{{pet.breed}}</td>
+        </tr>
+    </tbody>
+</table>

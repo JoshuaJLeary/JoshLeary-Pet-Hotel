@@ -5,12 +5,23 @@ const pool = require('../modules/pool.js');
 router.post('/', function (req, res) {
     console.log('POST route')
     const pet = req.body;
-    let queryText = 'INSERT INTO "pets" ("owner", "name", "type", "breed", "owner_id") VALUES ($1, $2, $3, $4, $5);';
-    pool.query(queryText, [pet.owner, pet.name, pet.type, pet.breed, pet.owner_id])
+    let queryText = 'INSERT INTO "pets" ("name", "type", "breed", "owner_id") VALUES ($1, $2, $3, $4);';
+    pool.query(queryText, [pet.name, pet.type, pet.breed, pet.owner_id])
     .then( (result) => {
         res.sendStatus(200);
     }).catch((error) => {
         console.log('Error making query', error);
+        res.sendStatus(500);
+    });
+});
+
+router.get('/', function(req, res) {
+    console.log('GET /pet');
+    let queryText = `SELECT "name", "type", "breed", "owner_id" FROM "pets" JOIN "owners" ON "pets"."owner_id" = "owners"."id";`;
+    pool.query(queryText).then(function(result) {
+        res.send(result.rows);
+    }).catch(function(error) {
+        console.log('Error GET /pet', error);
         res.sendStatus(500);
     });
 });

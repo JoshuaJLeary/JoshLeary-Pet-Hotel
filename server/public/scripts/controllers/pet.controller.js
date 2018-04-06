@@ -1,18 +1,14 @@
-petApp.controller('PetController', ['$http', function($http) {
+petApp.controller('PetController', ['PetHotelService', function(PetHotelService) {
     console.log('Pet Controller Loaded!');
 
     let self = this;
 
-    self.pets = { list: [] };
+    self.owners = PetHotelService.owners;
 
-    self.addPet = function(pet) {
-        $http({
-            method: 'POST',
-            url: '/pet',
-            data: pet
-        }).then(function(response) {
-            console.log('PetController/addPet', response)
-        }).catch(function(error) {
-            console.log('PetController/addPet/error', error);
-        });
-}}]);
+    self.pets = PetHotelService.pets;
+
+    self.getPet = PetHotelService.getPet;
+
+    self.addPet = PetHotelService.addPet;
+    
+}]);
