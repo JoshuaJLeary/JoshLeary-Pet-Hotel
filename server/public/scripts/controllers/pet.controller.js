@@ -9,7 +9,13 @@ petApp.controller('PetController', ['PetHotelService', function(PetHotelService)
 
     self.getPet = PetHotelService.getPet;
 
-    self.addPet = PetHotelService.addPet;
+    // self.addPet = PetHotelService.addPet;
+    self.addPet = function(pet){
+        PetHotelService.addPet(pet);
+        self.petToAdd = { name: ''};
+        }
     
     self.deletePet = PetHotelService.deletePet;
+
+    self.checkInPet = PetHotelService.checkInPet;
 }]);

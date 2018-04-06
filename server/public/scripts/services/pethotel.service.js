@@ -66,6 +66,7 @@ petApp.service('PetHotelService', ['$http', function($http) {
             url: `/pet/${petId}`
         }).then((response) => {
             self.getPet();
+            self.getOwner()
             alert('Success!');
         }).catch((error) => {
             console.log('error making rent get request', error);
@@ -87,6 +88,22 @@ petApp.service('PetHotelService', ['$http', function($http) {
             alert('Something went wrong! Check the server.');
         });
     }
+
+    self.checkInPet = function(petId, attendance) {
+        console.log(petId, attendance)
+        let update = { newAttendance: !attendance }
+        console.log(update);
+        $http({
+            method: 'PUT',
+            url: `/pet/${petId.id}`,
+            data: update
+        }).then(function(response) {
+            self.getPet();
+            alert('Success!');
+        }).catch(function(error) {
+            console.log('error in PUT request', error);
+        });
+    };   
     self.getPet();
     self.getOwner();
 

@@ -17,7 +17,7 @@ router.post('/', function (req, res) {
 
 router.get('/', function(req, res) {
     console.log('GET /pet');
-    let queryText = `SELECT "name", "type", "breed", "owner_id", "pets"."id" FROM "pets" JOIN "owners" ON "pets"."owner_id" = "owners"."id";`;
+    let queryText = `SELECT "name", "type", "breed", "owner_id", "pets"."id","attendance" FROM "pets" JOIN "owners" ON "pets"."owner_id" = "owners"."id";`;
     pool.query(queryText).then(function(result) {
         res.send(result.rows);
     }).catch(function(error) {
@@ -37,6 +37,17 @@ router.delete('/:id', (req, res) => {
             console.log('error making pet delete query', error);
             res.sendStatus(500);
         });
+});
+
+router.put('/:id', (req,res) => {
+    console.log('UPDATE /pet', req.params);
+    let attendance = req.body;
+    const petId = req.params.id;
+    pool.query('UPDATE "pets" SET "attendance" = $1 WHERE "id" = $2', [attendance.newAttendance, petId]).then(function(response) {
+        res.sendStatus(201);
+    }).catch(function(error) {
+        console.log('UPDATE error', error);
+    });
 });
 
 module.exports = router;
