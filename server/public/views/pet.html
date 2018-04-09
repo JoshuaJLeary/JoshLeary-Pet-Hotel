@@ -21,7 +21,7 @@
     </thead>
     <tbody>
         <tr ng-repeat="pet in vm.pets.list">
-            <td>{{pet.owner_id}}</td><td>{{pet.name}}</td><td>{{pet.type}}</td><td>{{pet.breed}}</td><td><button ng-click="vm.checkInPet(pet, pet.attendance)">Pet Checked!</button></td><td><button ng-click="vm.deletePet(pet.id)">Delete!</button></td>
+            <td>{{pet.owner_name}}</td><td>{{pet.name}}</td><td>{{pet.type}}</td><td>{{pet.breed}}</td><td><md-button class="md-raised md-primary" ng-click="vm.checkInPet(pet, pet.attendance)">Pet Checked!</md-button></td><td><md-button class="md-raised md-warn" ng-click="vm.deletePet(pet.id)">Delete!</md-button></td>
         </tr>
     </tbody>
 </table>

@@ -17,7 +17,7 @@ router.post('/', function (req, res) {
 
 router.get('/', function(req, res) {
     console.log('GET /pet');
-    let queryText = `SELECT "name", "type", "breed", "owner_id", "pets"."id","attendance" FROM "pets" JOIN "owners" ON "pets"."owner_id" = "owners"."id";`;
+    let queryText = `SELECT "name", "type", "breed", "owner_id", "pets"."id","attendance", "owners"."owner_name" FROM "pets" JOIN "owners" ON "pets"."owner_id" = "owners"."id";`;
     pool.query(queryText).then(function(result) {
         res.send(result.rows);
     }).catch(function(error) {

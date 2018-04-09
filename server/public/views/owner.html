@@ -14,7 +14,7 @@
         </thead>
         <tbody>
             <tr ng-repeat="owner in vm.owners.list">
-                <td>{{owner.owner_name}}</td><td>{{owner.count}}</td><td><button ng-click="vm.deleteOwner(owner)">Delete!</button></td>
+                <td>{{owner.owner_name}}</td><td>{{owner.count}}</td><td><md-button class="md-raised md-warn" ng-click="vm.deleteOwner(owner)">Delete!</md-button></td>
             </tr>
         </tbody>
     </table>
